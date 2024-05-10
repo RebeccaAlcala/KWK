@@ -1,43 +1,36 @@
 //
 //  ContentView.swift
-//  AboutMe
+//  UIs Practice
 //
-//  Created by Rebecca Alcala on 5/6/24.
+//  Created by Rebecca Alcala on 5/7/24.
 //
 
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showNewTask = false
     var body: some View {
-        ZStack {
-                    Color(.systemMint)
-                        .ignoresSafeArea()
-            
-            VStack (alignment: .center, spacing: 10.0){
-
-                Text(" All About Me <3").font(.system(size: 50))                    .foregroundColor(.pink)
+        VStack {
+            HStack{
+                Text("To Do List")
+                     .font(.system(size: 40))
+                     .fontWeight(.black)
+                Spacer()
                 
-                    Image("pic")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .cornerRadius(100)
-                    .padding(.bottom, 50.0)
-                
-                Text("Rebecca Alcala").font(.system(size: 40))                    .foregroundColor(.purple)
-                            
-                Text("Age: 19").font(.system(size: 25))
-                    .foregroundColor(.white)
-                
-                Text("Fav things: Pineapple, Friends, Flowers, Pictures, KWK").font(.system(size: 25))
-                    .foregroundColor(.white)
-
-                    }.background(Rectangle() .foregroundColor(.blue))
-
+                Button {
+                    withAnimation {
+                        self.showNewTask = true
+                    }
+                } label: {
+                    Text("+")
                 }
-        
-
-        .padding()
-
+                
+            }.padding()
+            Spacer()
+        }
+        if showNewTask {
+            NewToDo()
+        }
     }
 }
 
